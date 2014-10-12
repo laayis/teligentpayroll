@@ -1,0 +1,39 @@
+body{background:url('../images/shared/default-noise.png') repeat }
+.content-wrap{background:url('../images/shared/circleeffects.png') repeat top center }
+
+
+div.wrapp{padding: 1.5em 2em}
+
+div.title-section{margin: 10px 0}
+
+input[type=text],
+div.title-section h2,
+section .section-title h2,
+section h2.emphasize {font:700 1.55em Calibri,Candara,Segoe,"Segoe UI",Optima,Arial,sans-serif; color: #00adef; }
+div.content-section{margin: 20px 0 10px}
+
+/* SECTION */
+
+section .section-title h2 {position: relative; color: #2f2f2f;}
+
+section .section-title h2:before {
+	content: ' ';
+	position: absolute;
+	width: 6px;
+	height: 20px;
+	top: 5px;
+	left: -20px;
+	background-color: #00adef;
+}
+
+div.clearfix:after {
+	content: ' ';
+	display: block;
+	clear: both;
+}
+
+input[type=text] {color: #777; font-weight: 400;}
+
+@media screen and (max-width: 40.062em){
+	div.wrapp{padding: 1em}
+}
