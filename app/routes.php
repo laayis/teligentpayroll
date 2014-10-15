@@ -11,7 +11,18 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
+Route::get('/', function(){
+	return View::make('login');
 });
+
+Route::get('/login', function()
+{
+	return View::make('login');
+});
+
+
+Route::get('admin', 'UserController@index');
+Route::get('admin/home', 'UserController@index');
+Route::get('admin/index', 'UserController@index');
+Route::get('admin/users', 'UserController@index');
+Route::resource('user', 'UserController');
