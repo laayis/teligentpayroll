@@ -11,18 +11,40 @@
 |
 */
 
-Route::get('/', function(){
-	return View::make('login');
-});
 
-Route::get('/login', function()
+Route::get('login','LoginController@login');
+Route::post('login','LoginController@checkLogin');
+Route::get('logout','LoginController@logout');
+
+/*Route::get('/', function()
 {
 	return View::make('login');
+});*/
+
+Route::get('/test', function()
+{
+	return View::make('admintemplate');
 });
 
+/* 
+|====================================================================================
+|====================================================================================
+|ADMIN ROUTE
+|====================================================================================
+|====================================================================================
+*/
 
-Route::get('admin', 'UserController@index');
-Route::get('admin/home', 'UserController@index');
-Route::get('admin/index', 'UserController@index');
-Route::get('admin/users', 'UserController@index');
-Route::resource('user', 'UserController');
+Route::group(array('prefix' => Config::get('app.prefix'), 'before'=>'auth'), function()
+{
+	/************** USER ROUTES ******************/
+
+	Route::resource('users', 'UsersController');
+});
+
+/* 
+|====================================================================================
+|====================================================================================
+|END OF ADMIN ROUTE
+|====================================================================================
+|====================================================================================
+*/
