@@ -20,7 +20,14 @@
 
 </head>
 <body>
-    <?php echo ?> 
+   
+    <div class="large-3 columns left-nav">
+      @yield('leftmenu')
+    </div>
+    
+    <div class="large-9 columns right-content">
+      @yield('content')
+    </div>
 
 
 	@yield('footer')
@@ -29,26 +36,13 @@
   {{ HTML::script('resources/libraries/foundation/js/foundation.min.js') }}
   {{ HTML::script('node_modules/moment/min/moment.min.js') }}
   {{ HTML::script('resources/js/login.js') }}
-
+  {{ HTML::script('resources/js/datetime.js') }}
   <script type="text/javascript" src="http://cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js"></script>
-  
+ 
   <script>
   $(document).foundation();
 
-    $(document).ready(function(){
-      
-      var getDateTime = function getDateTime(){
-
-        var date = moment().format("MMMM DD, YYYY");
-        var time = moment().format("hh:mm:ss A");
-        $('.date').html('<i class="fa fa-calendar"></i> ' + date);
-        $('.time').html('<i class="fa fa-clock-o"></i> ' + time);
-
-      }
-
-      setInterval(getDateTime, 1000);
-      
-    });
+    
   </script>
 </body>
 </html>

@@ -34,7 +34,7 @@ class UsersController extends \BaseController {
 	public function create()
 	{
 		//
-		
+		$this->layout->content = View::make('secure.users.create');
 		
 	}
 
@@ -47,6 +47,27 @@ class UsersController extends \BaseController {
 	public function store()
 	{
 		//
+		$user = array(
+				'isadmin'		=> Input::get('isadmin') <> 'on' ? 0 : 1,
+				'lastname' 		=> Input::get('lastname'),
+				'firstname'		=> Input::get('firstname'),
+				'username' 		=> Input::get('username'),
+				'password'  	=> Hash::make(Input::get('password')),
+				'position'  	=> Input::get('position'),
+				'contactno' 	=> Input::get('contactno'),
+				'userpic'		=> 'no-image.jpg',
+				'email' 		=> Input::get('email'),
+				'created_by' 	=> Auth::user()->id,
+				'modified_by' 	=> Auth::user()->id
+			);
+
+
+
+		User::unguard();
+		$newUser = User::create($user);
+		$newUser->reguard();
+
+		return Redirect::to('secure/users/create');
 	}
 
 	/**
