@@ -20,11 +20,7 @@
 
 </head>
 <body>
-    <?php echo  ?>
-    
-    <div class="large-9 columns right-content">
-      @yield('content')
-    </div>
+    <?php echo View::make('partial.leftmenu')  ?> 
 
 
 	@yield('footer')
