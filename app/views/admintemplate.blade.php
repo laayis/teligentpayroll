@@ -20,7 +20,7 @@
 
 </head>
 <body>
-    <?php echo View::make('partial.leftmenu')  ?> 
+    <?php echo ?> 
 
 
 	@yield('footer')
