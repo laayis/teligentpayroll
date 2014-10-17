@@ -10,10 +10,13 @@
   <!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
   {{ HTML::style('resources/libraries/foundation/css/normalize.css') }}
   {{ HTML::style('resources/libraries/foundation/css/foundation.css') }}
-  {{ HTML::style('resources/css/style.css') }}
   
   {{ HTML::script('resources/libraries/foundation/js/vendor/modernizr.js') }}
+  {{HTML::style('resources/libraries/swiper/idangerous.swiper.css')}}
+  {{HTML::script('resources/libraries/swiper/idangerous.swiper.min.js')}}
   
+  {{ HTML::style('resources/css/style.css') }}
+
   <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.3/css/jquery.dataTables.min.css">
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -37,8 +40,10 @@
   {{ HTML::script('node_modules/moment/min/moment.min.js') }}
   {{ HTML::script('resources/js/login.js') }}
   {{ HTML::script('resources/js/datetime.js') }}
+  {{ HTML::script('resources/js/script.js') }}
   <script type="text/javascript" src="http://cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js"></script>
- 
+  
+
   <script>
   $(document).foundation();
 
