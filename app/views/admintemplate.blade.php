@@ -20,7 +20,9 @@
 
 </head>
 <body>
-    <?php echo  ?>
+    <div class="large-3 columns left-nav">
+      @yield('leftmenu')
+    </div>
     
     <div class="large-9 columns right-content">
       @yield('content')

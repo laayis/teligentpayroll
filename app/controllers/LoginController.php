@@ -22,7 +22,8 @@ class LoginController extends \BaseController {
 				$loggedUser->isnew = 0;
 				$loggedUser->save();
 				//Session::flash('flashdata', array('message'=> Biblehelpers::getdailybibleverse()['content'] .'<br/>' . Biblehelpers::getdailybibleverse()['verse'] ,'code'=>1));
-				print_r('login');die();
+
+				return Redirect::to('secure/users/create');
 			}
 
 			$this->layout->content = View::make('secure.login')->with('error','This user is not active. ' . '<br/>' .' Please contact the administrator to ' . '<br/>' .' activate your account');
