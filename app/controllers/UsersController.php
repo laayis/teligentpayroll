@@ -34,7 +34,8 @@ class UsersController extends \BaseController {
 	public function create()
 	{
 		//
-		$this->layout->content = View::make('secure.users.create');
+		$modules = Module::where('id', '<>', 1)->get();
+		$this->layout->content = View::make('secure.users.create')->with('modules', $modules);
 		
 	}
 
@@ -47,14 +48,15 @@ class UsersController extends \BaseController {
 	public function store()
 	{
 		//
+		$modules = Input::get('chkmodule');
+		dd(serialize($modules));
+
 		$user = array(
 				'isadmin'		=> Input::get('isadmin') <> 'on' ? 0 : 1,
 				'lastname' 		=> Input::get('lastname'),
 				'firstname'		=> Input::get('firstname'),
 				'username' 		=> Input::get('username'),
 				'password'  	=> Hash::make(Input::get('password')),
-				'position'  	=> Input::get('position'),
-				'contactno' 	=> Input::get('contactno'),
 				'userpic'		=> 'no-image.jpg',
 				'email' 		=> Input::get('email'),
 				'created_by' 	=> Auth::user()->id,
@@ -92,6 +94,7 @@ class UsersController extends \BaseController {
 	public function edit($id)
 	{
 		//
+		$this->layout->content = View::make('secure.users.edit');
 	}
 
 	/**

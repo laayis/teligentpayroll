@@ -1,5 +1,5 @@
 @section('leftmenu')
-<?php echo View::make('partial.leftmenu') ?>	
+{{ View::make('partial.leftmenu') }}
 @endsection
 
 @section('content')
@@ -45,22 +45,6 @@
 		</p>
 
 		<p>
-			<label>Position</label>
-			<span class="field">
-				{{Form::text('position',Input::old('position'),array('class'=>($errors->first('position')) ? 'i-error' : ' '))}}
-					{{$errors->first('position', '<span class="f-error">:message</span>');}}
-			</span>
-		</p>
-
-		<p>
-			<label>Contact No.</label>
-			<span class="field">
-				{{Form::text('contactno',Input::old('contactno'),array('class'=>($errors->first('contactno')) ? 'i-error' : ' '))}}
-					{{$errors->first('contactno', '<span class="f-error">:message</span>');}}
-			</span>
-		</p>
-
-		<p>
 			<label>Email</label>
 			<span class="field">
 				{{Form::text('email',Input::old('email'),array('class'=>($errors->first('email')) ? 'i-error' : ' '))}}
@@ -75,6 +59,18 @@
 					{{$errors->first('userpic', '<span class="f-error">:message</span>');}}
 			</span>
 		</p>
+		
+		<p><label>Modules</label></p>
+		@foreach($modules as $module)
+		<div>
+			<p>{{$module->name}}</p>
+			@for($i = 0; $i < 4; $i++)
+			<span class="field">
+				{{Form::checkbox('chkmodule[]',Input::old('chkmodule[]'),false)}}
+			</span>
+			@endfor
+		</div>
+		@endforeach
 
 		<p>
 			<input type ="submit" value="Save">

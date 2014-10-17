@@ -18,8 +18,6 @@ class UsersTableSeeder extends Seeder {
                         'password' => Hash::make('!@#$%^'),
                         'lastname' => 'superuser',
                         'firstname' => 'superuser',
-                        'position' => 'System Admin',
-                        'contactno' => '09054005755',
                         'email' => 'snptest@yahoo.com.ph',
                         'userpic'=> 'no-image.jpg',
                         'created_by' => 1,

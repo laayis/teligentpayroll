@@ -8,7 +8,7 @@
 	},
 	
 	"require-dev": {
-    "way/generators": "dev-master"
+    "way/generators": "~2.0"
 	},
 
 	"autoload": {
