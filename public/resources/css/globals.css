@@ -28,7 +28,7 @@ p, li, a {
 	background: #22313F;
 	background-attachment: fixed;
 	min-height: 100%;
-	height:120%;
+	height:130%;
     overflow-y: hidden;
 	position: relative;
 }
@@ -76,4 +76,8 @@ p, li, a {
 
 .right-content {
 	height:100%;
+}
+
+.swipe-control {
+	text-align: right;
 }
