@@ -96,22 +96,18 @@
 				<tr>
 					<th>Module</th>
 					<th>Create</th>
+					<th>Read</th>
 					<th>Update</th>
 					<th>Delete</th>
 				</tr>
+				@foreach($modules as $module)
 				<tr>
-					<td>User Management</td>
-					<td><p>{{Form::checkbox('create')}}</p></td>
-					<td><p>{{Form::checkbox('update')}}</p></td>
-					<td><p>{{Form::checkbox('delete')}}</p></td>
+					<td>{{strtoupper($module->description)}}</td>
+					@for($i = 0; $i < 4; $i++)
+						<td><p>{{Form::checkbox('chkmodule[]',$module->id,Input::old('chkproject[]'),false)}}</p></td>
+					@endfor
 				</tr>
-				<tr>
-					<td>Employee Management</td>
-					<td><p>{{Form::checkbox('create')}}</p></td>
-					<td><p>{{Form::checkbox('update')}}</p></td>
-					<td><p>{{Form::checkbox('delete')}}</p></td>
-				</tr>
-				
+				@endforeach
 			</table>
 	        	<p class="swipe-control">
 	        		<a href="#" class="button prev"><i class="fa fa-angle-left"></i> Previous</a>

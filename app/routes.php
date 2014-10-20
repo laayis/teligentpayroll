@@ -16,10 +16,10 @@ Route::get('login','LoginController@login');
 Route::post('login','LoginController@checkLogin');
 Route::get('logout','LoginController@logout');
 
-/*Route::get('/', function()
+Route::get('/', function()
 {
-	return View::make('login');
-});*/
+	return Redirect::to('login');
+});
 
 Route::get('/test', function()
 {

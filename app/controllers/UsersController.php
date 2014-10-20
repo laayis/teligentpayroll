@@ -20,8 +20,11 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
-		return User::all();
+		//		
+		$users = User::where('id','<>',Auth::user()->id)
+			->where('id','<>', 1)->get();
+
+		$this->layout->content = View::make('secure.users.index')->with('users', $users);
 
 	}
 
