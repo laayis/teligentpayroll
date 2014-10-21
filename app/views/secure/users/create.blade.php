@@ -13,7 +13,7 @@
 				<p>
 					<label>Admin</label>
 					<span class="field">
-						{{Form::checkbox('isadmin',Input::old('isadmin'),array('class'=>($errors->first('isadmin')) ? 'i-error' : ''))}}
+						{{Form::checkbox('isadmin',Input::old('isadmin'), false)}}
 						{{$errors->first('isadmin', '<span class="f-error">:message</span>');}}
 					</span>
 				</p>
@@ -29,8 +29,16 @@
 				<p>
 					<label>Password</label>
 					<span class="field">
-						{{Form::text('password',Input::old('password'),array('class'=>($errors->first('password')) ? 'i-error' : ' '))}}
+						{{Form::password('password',null,array('class'=>($errors->first('password')) ? 'i-error' : ' '))}}
 							{{$errors->first('password', '<span class="f-error">:message</span>');}}
+					</span>
+				</p>
+
+				<p>
+					<label>Confirm Password</label>
+					<span class="field">
+						{{Form::password('password_confirmation',null,array('class'=>($errors->first('password_confirmation')) ? 'i-error' : ''))}}
+						{{$errors->first('password_confirmation', '<span class="f-error">:message</span>');}}
 					</span>
 				</p>
 
@@ -74,14 +82,6 @@
 					</span>
 				</p>
 
-				<p>
-					<label>Profile Picture</label>
-					<span class="field">
-						{{Form::text('userpic',Input::old('userpic'),array('class'=>($errors->first('userpic')) ? 'i-error' : ' '))}}
-							{{$errors->first('userpic', '<span class="f-error">:message</span>');}}
-					</span>
-				</p>
-
 				<p class="swipe-control">
 					<a href="#" class="button next">Next <i class="fa fa-angle-right"></i> </a>
 				</p>
@@ -95,8 +95,8 @@
 			<table class="access-level" style="width:100%">
 				<tr>
 					<th>Module</th>
-					<th>Create</th>
 					<th>Read</th>
+					<th>Create</th>
 					<th>Update</th>
 					<th>Delete</th>
 				</tr>
@@ -104,7 +104,7 @@
 				<tr>
 					<td>{{strtoupper($module->description)}}</td>
 					@for($i = 0; $i < 4; $i++)
-						<td><p>{{Form::checkbox('chkmodule[]',$module->id,Input::old('chkproject[]'),false)}}</p></td>
+						<td><p>{{Form::checkbox('chkmodule' . $module->id . '[]', $i,Input::old('chkmodule[]'),false)}}</p></td>
 					@endfor
 				</tr>
 				@endforeach

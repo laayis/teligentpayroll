@@ -17,10 +17,10 @@ class CreateAccessrightsTable extends Migration {
 			$table->increments('id');
 			$table->unsignedInteger('userid');
 			$table->unsignedInteger('moduleid');
-			$table->tinyInteger('tread');
-			$table->tinyInteger('tcreate');
-			$table->tinyInteger('tupdate');
-			$table->tinyInteger('tdelete');
+			$table->tinyInteger('tread')->default(0);
+			$table->tinyInteger('tcreate')->default(0);
+			$table->tinyInteger('tupdate')->default(0);
+			$table->tinyInteger('tdelete')->default(0);
 			$table->unsignedInteger('created_by');
 			$table->unsignedInteger('modified_by');
 			$table->timestamps();

@@ -49,10 +49,11 @@ class UsersController extends \BaseController {
 	 * @return Response
 	 */
 	public function store()
-	{
-		//
-		$modules = Input::get('chkmodule');
-		dd(serialize($modules));
+	{	
+		$validator = Validator::make(Input::all(), Config::get('formrules.create_user'));
+		if( $validator->fails()) {
+			return Redirect::to('secure/users/create')->withErrors($validator)->withInput();
+		}
 
 		$user = array(
 				'isadmin'		=> Input::get('isadmin') <> 'on' ? 0 : 1,
@@ -72,7 +73,68 @@ class UsersController extends \BaseController {
 		$newUser = User::create($user);
 		$newUser->reguard();
 
-		return Redirect::to('secure/users/create');
+		$lastInsertedId = DB::getPdo()->lastInsertId();
+
+		if (Input::get('isadmin') === 'on') {
+				$accessrights = array(
+					'userid' 		=> $lastInsertedId,
+					'moduleid' 		=> 1,
+					'tread' 		=> 1,
+					'tcreate' 		=> 1,
+					'tupdate' 		=> 1,
+					'tdelete' 		=> 1,
+					'created_by' 	=> Auth::user()->id,
+					'modified_by' 	=> Auth::user()->id
+				);
+
+			Accessright::unguard();
+			$newRight = Accessright::create($accessrights);
+			$newRight->reguard();
+		}
+
+		for ($i = 2; $i < DB::table('modules')->count() + 1; $i++) 
+		{
+			$modules = Input::get('chkmodule' . $i);
+			if (count($modules) > 0) 
+			{
+				$accessrights = array(
+					'userid' 	=> $lastInsertedId,
+					'moduleid' 	=> $i,
+					'created_by' => Auth::user()->id,
+					'modified_by' => Auth::user()->id
+				);
+
+				foreach ($modules as $key => $value) 
+				{
+					switch ($value) 
+					{
+						case 0:
+							$accessrights['tread'] = 1;
+							break;
+						
+						case 1:
+							$accessrights['tcreate'] = 1;
+							break;
+
+						case 2:
+							$accessrights['tupdate'] = 1;
+							break;
+
+						case 3:
+							$accessrights['tdelete'] = 1;
+							break;
+					}
+				}
+
+				Accessright::unguard();
+				$newRight = Accessright::create($accessrights);
+				$newRight->reguard();
+			}
+		}
+
+
+
+		return Redirect::to('secure/users');
 	}
 
 	/**
@@ -97,7 +159,21 @@ class UsersController extends \BaseController {
 	public function edit($id)
 	{
 		//
-		$this->layout->content = View::make('secure.users.edit');
+		$user = User::find(Crypt::decrypt($id));
+
+		$modules = DB::select(DB::raw('SELECT DISTINCT a.id id,
+			a.description description, 
+			IFNULL(b.tread,0) tread,
+			IFNULL(b.tcreate,0) tcreate, 
+			IFNULL(b.tupdate,0) tupdate,
+			IFNULL(b.tdelete,0) tdelete 
+			FROM modules a LEFT JOIN accessrights b
+			ON a.id = b.moduleid AND b.userid = 
+			' . Crypt::decrypt($id) . ' where a.id <> 1 ORDER BY a.id'));
+
+		$this->layout->content = View::make('secure.users.edit')
+			->with('user', $user)
+			->with('modules', $modules);
 	}
 
 	/**
@@ -110,6 +186,79 @@ class UsersController extends \BaseController {
 	public function update($id)
 	{
 		//
+		$user = User::find(Crypt::decrypt($id));
+
+		$user->isadmin		= Input::get('isadmin') <> 'on' ? 0 : 1;
+		$user->lastname		= Input::get('lastname');
+		$user->firstname	= Input::get('firstname');
+		$user->username 	= Input::get('username');
+		$user->password 	= Input::get('password');
+		$user->userpic 		= Input::get('userpic');
+		$user->email 		= Input::get('email');
+		$user->modified_by 	= Input::get('modified_by');
+
+		$user->save();
+
+		Accessright::where('userid', '=', $user->id)->delete();
+
+		if (Input::get('isadmin') === 'on') {
+				$accessrights = array(
+					'userid' 		=> $user->id,
+					'moduleid' 		=> 1,
+					'tread' 		=> 1,
+					'tcreate' 		=> 1,
+					'tupdate' 		=> 1,
+					'tdelete' 		=> 1,
+					'created_by' 	=> Auth::user()->id,
+					'modified_by' 	=> Auth::user()->id
+				);
+
+			Accessright::unguard();
+			$newRight = Accessright::create($accessrights);
+			$newRight->reguard();
+		}
+
+		for ($i = 2; $i < DB::table('modules')->count() + 1; $i++) 
+		{
+			$modules = Input::get('chkmodule' . $i);
+			if (count($modules) > 0) 
+			{
+				$accessrights = array(
+					'userid' 	=> $user->id,
+					'moduleid' 	=> $i,
+					'created_by' => Auth::user()->id,
+					'modified_by' => Auth::user()->id
+				);
+
+				foreach ($modules as $key => $value) 
+				{
+					switch ($value) 
+					{
+						case 0:
+							$accessrights['tread'] = 1;
+							break;
+						
+						case 1:
+							$accessrights['tcreate'] = 1;
+							break;
+
+						case 2:
+							$accessrights['tupdate'] = 1;
+							break;
+
+						case 3:
+							$accessrights['tdelete'] = 1;
+							break;
+					}
+				}
+
+				Accessright::unguard();
+				$newRight = Accessright::create($accessrights);
+				$newRight->reguard();
+			}
+		}
+
+		return Redirect::to('secure/users');
 	}
 
 	/**
