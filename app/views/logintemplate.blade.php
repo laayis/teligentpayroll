@@ -15,7 +15,7 @@
 
   {{ HTML::script('resources/libraries/foundation/js/vendor/modernizr.js') }}
   
-  <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:500,300' rel='stylesheet' type='text/css'>
 
 </head>
 <body>
