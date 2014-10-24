@@ -12,29 +12,28 @@
   {{ HTML::style('resources/libraries/foundation/css/foundation.css') }}
   
   {{ HTML::script('resources/libraries/foundation/js/vendor/modernizr.js') }}
-  {{HTML::style('resources/libraries/swiper/idangerous.swiper.css')}}
-  {{HTML::script('resources/libraries/swiper/idangerous.swiper.min.js')}}
   
   {{ HTML::style('resources/css/style.css') }}
 
-  <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.3/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/plug-ins/380cb78f450/integration/foundation/dataTables.foundation.css">
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Roboto:500,300' rel='stylesheet' type='text/css'>
-
+  
 </head>
 <body>
-   
-    <div class="large-3 columns left-nav">
-      @yield('leftmenu')
-    </div>
+   <div id="mainwrapper">
+      <div class="large-3 columns left-nav">
+        @yield('leftmenu')
+      </div>
+      
+      <div class="main-content large-9 columns right-content">
+          @yield('content')
+      </div>
     
-    <div class="large-9 columns right-content">
-      @yield('content')
-    </div>
-
-
-	@yield('footer')
-
+    <footer>
+      <p>Powered by: Patrick James G. Lim &amp; Joshua B. Turingan. All rights reserved 2014.</p>
+    </footer>
+  </div>
   {{ HTML::script('bower_components/jquery/dist/jquery.js') }}
   {{ HTML::script('resources/libraries/foundation/js/foundation.min.js') }}
   {{ HTML::script('node_modules/moment/min/moment.min.js') }}
@@ -42,6 +41,7 @@
   {{ HTML::script('resources/js/datetime.js') }}
   {{ HTML::script('resources/js/script.js') }}
   <script type="text/javascript" src="http://cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="http://cdn.datatables.net/plug-ins/380cb78f450/integration/foundation/dataTables.foundation.js"></script>
   
 
   <script>

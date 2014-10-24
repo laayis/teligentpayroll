@@ -21,9 +21,13 @@ Route::get('/', function()
 	return Redirect::to('login');
 });
 
-Route::get('/test', function()
+$admintemplate = 'admintemplate';
+
+Route::get('/test', function() use ($admintemplate)
 {
-	return View::make('admintemplate');
+	View::name($admintemplate, 'create');
+	$layout = View::of('create');
+	return $layout->nest('content', 'create');
 });
 
 /* 

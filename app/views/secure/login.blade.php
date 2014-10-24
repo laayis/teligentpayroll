@@ -1,5 +1,5 @@
 @section('content')
-  <div class="container">
+  <div class="login container">
     <div class="large-4 large-centered column login-form">
       <h3>Teligent Systems Inc. Payroll System</h3>
       {{Form::open(['action' => 'LoginController@checkLogin'])}}

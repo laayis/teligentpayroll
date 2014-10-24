@@ -3,19 +3,40 @@ html {
 }
 
 body {
-	background: url('../img/pattern.jpg');
-	background-attachment: fixed !important;
-	height: 100%;
-	min-height: 100%;
-	position: relative;
+	background: #ececec;
 }
 
-h1, h2, h3, h4, h5, h6, label, input[type='submit'] {
+h1, h2, h3, h4, h5, h6, label, input[type='submit'], thead th, tbody td {
 	font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
 p, li, a {
 	font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;	
+}
+
+label {
+	font-size: 16px;
+}
+
+footer {
+	clear: both;
+	background: #26a65b;
+}
+
+footer p {
+	margin:0;
+	padding: 10px;
+	font-size: 12px;
+	text-align: center;
+	color: #fff;
+}
+
+#mainwrapper {
+	background: #26a65b;
+}
+
+.main-content {
+	background: #ececec;
 }
 
 .info-container, .left-nav li {
@@ -25,10 +46,9 @@ p, li, a {
 
 .left-nav {
 	padding: 0;
-	background: #22313F;
+	background: #26a65b;
 	background-attachment: fixed;
 	min-height: 100%;
-	height:130%;
     overflow-y: hidden;
 	position: relative;
 }
@@ -67,17 +87,49 @@ p, li, a {
 }
 
 .side-nav li:hover {
-	background: ;
+	background: #19703d;
+}
+
+
+.side-nav a:hover {
+	color: #fff !important;
 }
 
 .side-nav li a:visited, .side-nav li a:link{
 	color: #fff;
+	padding:15px;
+}
+
+.form-title h4 {
+	padding:10px;
+	color: #fff;
 }
 
 .right-content {
-	height:100%;
 }
 
-.swipe-control {
-	text-align: right;
+/*Custom Styles*/
+
+.ft-container {
+	padding: 0 !important;
+}
+.form-title {
+	background: #26a65b;
+	padding: 0px 10px;
+	margin-top: 20px;
+}
+
+.form-container {
+	box-shadow: 1px 2px 10px rgba(0,0,0,0.4);
+	background: #fff !important;
+	clear: both;
+	margin-bottom: 20px;
+}
+
+.success {
+	background: #26a65b !important;
+}
+
+.success:hover {
+	background: #19703d !important;
 }
