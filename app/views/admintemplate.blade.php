@@ -16,6 +16,7 @@
   {{ HTML::style('resources/css/style.css') }}
 
   <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/plug-ins/380cb78f450/integration/foundation/dataTables.foundation.css">
+  <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/responsive/1.0.2/css/dataTables.responsive.css">
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Roboto:500,300' rel='stylesheet' type='text/css'>
   
@@ -42,6 +43,7 @@
   {{ HTML::script('resources/js/script.js') }}
   <script type="text/javascript" src="http://cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript" src="http://cdn.datatables.net/plug-ins/380cb78f450/integration/foundation/dataTables.foundation.js"></script>
+  <script type="text/javascript" src="http://cdn.datatables.net/responsive/1.0.2/js/dataTables.responsive.js"></script>
   
 
   <script>

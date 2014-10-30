@@ -23,13 +23,12 @@ Route::get('/', function()
 
 $admintemplate = 'admintemplate';
 
-Route::get('/test', function() use ($admintemplate)
+Route::get('/secure/employees/create', function() use ($admintemplate)
 {
-	View::name($admintemplate, 'create');
-	$layout = View::of('create');
-	return $layout->nest('content', 'create');
+	View::name($admintemplate, 'secure/employees/create');
+	$layout = View::of('secure/employees/create');
+	return $layout->nest('content', 'secure/employees/create');
 });
-
 /* 
 |====================================================================================
 |====================================================================================
